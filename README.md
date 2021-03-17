@@ -27,7 +27,7 @@ Else
 End If  
 ```
 ### Notes:
-Most of the above is self explanitory except for AuthenticationType.  That is a integer whcih is 1 for AX Digest, 2 for N4 Digest, and 3 for HTTP Basic.  Defaults to 3 if not supplied.
+Most of the above is self explanitory except for AuthenticationType.  That is a integer which is 1 for AX Digest, 2 for N4 Digest, and 3 for HTTP Basic.  Defaults to 3 if not supplied.
 
 
 # Limitations
