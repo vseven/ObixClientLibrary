@@ -8,13 +8,18 @@ Create a Class Library project within your VS solution called Obix Client Librar
 For ease of use add some imports to your code:
 
 Imports ObixClientLibrary
+
 Imports ObixClientLibrary.Extensions
+
 Imports ObixClientLibrary.Framework
+
 
 Basic connection to a Obix server: 
 
 Dim obixClient As XmlObixClient = GetClient(ServerAddress, UserName, Password, AuthenticationType)
+
 Dim connectResult As ObixResult = obixClient.Connect()
+
 If connectResult = ObixResult.kObixClientSuccess Then
   msgbox("Connect success!")
 Else
