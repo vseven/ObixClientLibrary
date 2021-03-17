@@ -1,8 +1,12 @@
 # ObixClientLibrary
-Obix Client Library based on the work of TylerJWatson - https://github.com/tylerjwatson/NetBIX for retrieving Obix points from a device, in my case Niagara/Tridium Jace and Web Supervisors.
+Obix Client Library for retrieving Obix points from a device, in my case Niagara/Tridium Jace and Web Supervisors.
+
+This is based on the work of TylerJWatson - https://github.com/tylerjwatson/NetBIX.  As development on this library looks to have stopped 7 years ago, and as I made a bunch of small tweaks to it, I decided not to fork his library but reupload fresh.
+
 
 # Installation
 Create a Class Library project within your VS solution called Obix Client Library (or the name of your choosing).  Add the files here to your project.  In your main project add a reference to this library.  
+
 
 # Basic Usage
 ### For ease of use add some imports to your code:
