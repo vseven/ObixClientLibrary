@@ -78,23 +78,50 @@ namespace ObixClientLibrary
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             switch (authtype)
             {
+                case 1:
+                    // Uses N4 Digest authentication - DOESN'T WORK
+                    var n4CredCache = new CredentialCache
+                    {
+                        { ObixLobbyUri, "Digest", new NetworkCredential(userName, password) }
+                    };
+                    WebRequestHandler n4DigestHandler = new WebRequestHandler
+                    {
+                        Credentials = n4CredCache,
+                        
+                        PreAuthenticate = true,
+                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
+                    };
+                    WebClient = new HttpClient(n4DigestHandler)
+                    {
+                        Timeout = new TimeSpan(0, 15, 0)
+                    };
+                    ErrorStack = new ObixErrorStack();
+                    break;
+                case 2:
+                    // Uses AX Digest authentication - DOESN'T WORK
+                    var axCredCache = new CredentialCache
+                    {
+                        { ObixLobbyUri, "Digest", new NetworkCredential(userName, password) }
+                    };
+                    WebRequestHandler axDigestHandler = new WebRequestHandler
+                    {
+                        Credentials = axCredCache,
 
-                case 3:
+                        PreAuthenticate = true,
+                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
+                    };
+                    WebClient = new HttpClient(axDigestHandler)
+                    {
+                        Timeout = new TimeSpan(0, 15, 0)
+                    };
+                    ErrorStack = new ObixErrorStack();
+                    break;
+                default:
                     // Uses HTTP Basic authentication
                     System.Net.Http.Headers.AuthenticationHeaderValue BasicauthHeader = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(encoding.GetBytes(string.Format("{0}:{1}", userName, password))));
                     WebClient = new HttpClient();
                     WebClient.DefaultRequestHeaders.Authorization = BasicauthHeader;
-                    ErrorStack = new ObixErrorStack();
-                    break;
-                default:
-                    // TODO - correct code for authentication type 1 (Niagara 4 Digest) and 2 (Niagara AX Digest).  Whats here is not correct.
-                    WebRequestHandler handler = new WebRequestHandler
-                    {
-                        PreAuthenticate = true,
-                        Credentials = new NetworkCredential(userName, password),
-                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
-                    };
-                    WebClient = new HttpClient(handler);
+                    WebClient.Timeout = new TimeSpan(0, 15, 0);
                     ErrorStack = new ObixErrorStack();
                     break;
                }
@@ -108,30 +135,56 @@ namespace ObixClientLibrary
         public XmlObixClient(Uri ObixLobbyUri, string RegisterUri, string userName = null, string password = null, int authtype = 3)
             : base(ObixLobbyUri)
         {
-
+            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             switch (authtype)
             {
-                case 3:
-                    // Uses HTTP Basic authentication
-                    System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-                    System.Net.Http.Headers.AuthenticationHeaderValue authHeader = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(encoding.GetBytes(string.Format("{0}:{1}", userName, password))));
-                    WebClient = new HttpClient();
-                    WebClient.DefaultRequestHeaders.Authorization = authHeader;
+                case 1:
+                    // Uses N4 Digest authentication - DOESN'T WORK
+                    var n4CredCache = new CredentialCache
+                    {
+                        { ObixLobbyUri, "Digest", new NetworkCredential(userName, password) }
+                    };
+                    WebRequestHandler n4DigestHandler = new WebRequestHandler
+                    {
+                        Credentials = n4CredCache,
+                        
+                        PreAuthenticate = true,
+                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
+                    };
+                    WebClient = new HttpClient(n4DigestHandler)
+                    {
+                        Timeout = new TimeSpan(0, 15, 0)
+                    };
+                    ErrorStack = new ObixErrorStack();
+                    break;
+                case 2:
+                    // Uses AX Digest authentication - DOESN'T WORK
+                    var axCredCache = new CredentialCache
+                    {
+                        { ObixLobbyUri, "Digest", new NetworkCredential(userName, password) }
+                    };
+                    WebRequestHandler axDigestHandler = new WebRequestHandler
+                    {
+                        Credentials = axCredCache,
+
+                        PreAuthenticate = true,
+                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
+                    };
+                    WebClient = new HttpClient(axDigestHandler)
+                    {
+                        Timeout = new TimeSpan(0, 15, 0)
+                    };
                     ErrorStack = new ObixErrorStack();
                     break;
                 default:
-                    // TODO - correct code for authentication type 1 (Niagara 4 Digest) and 2 (Niagara AX Digest).  Whats here is not correct.
-                    WebRequestHandler handler = new WebRequestHandler
-                    {
-                        PreAuthenticate = true,
-                        Credentials = new NetworkCredential(userName, password),
-                        AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
-                    };
-                    WebClient = new HttpClient(handler);
+                    // Uses HTTP Basic authentication
+                    System.Net.Http.Headers.AuthenticationHeaderValue BasicauthHeader = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(encoding.GetBytes(string.Format("{0}:{1}", userName, password))));
+                    WebClient = new HttpClient();
+                    WebClient.DefaultRequestHeaders.Authorization = BasicauthHeader;
+                    WebClient.Timeout = new TimeSpan(0, 15, 0);
                     ErrorStack = new ObixErrorStack();
                     break;
-            }
-
+               }
             this.signUpUri = new Uri(Url.Combine(ObixLobbyUri.ToString(), RegisterUri));
         }
 
