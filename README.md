@@ -1,7 +1,7 @@
 # ObixClientLibrary
 Obix Client Library for retrieving Obix points from a device, in my case Niagara/Tridium Jace and Web Supervisors.
 
-This is based on the work of TylerJWatson - https://github.com/tylerjwatson/NetBIX.  As development on his library looks to have stopped 7 years ago, and as I made a bunch of small changes to it offline, I decided not to fork his library but reupload fresh and creit him.  He wrote the majority of this, I've only made a bunch of small tweaks, additions, and ran it through Visual Studio code analysis to clean stuff up.
+This is based on the work of TylerJWatson - https://github.com/tylerjwatson/NetBIX.  As development on his library looks to have stopped 7 years ago, and as I made a bunch of small changes to it offline, I decided not to fork his library but reupload fresh and credit him.  He wrote the majority of this, I've only made a bunch of small tweaks, additions, and ran it through Visual Studio code analysis to clean stuff up.
 
 
 # Installation
@@ -27,7 +27,7 @@ Else
 End If  
 ```
 ### Notes:
-Most of the above is self explanitory except for AuthenticationType.  That is a integer which is 1 for AX Digest, 2 for N4 Digest, and 3 for HTTP Basic.  Defaults to 3 if not supplied.
+Most of the above is self explanitory except for AuthenticationType.  That is a integer which is 1 for N4 Digest, 2 for Ax Digest, and 3 for HTTP Basic.  Defaults to 3 if not supplied.
 
 
 # Limitations
