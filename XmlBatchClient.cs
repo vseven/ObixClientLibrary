@@ -121,7 +121,7 @@ namespace ObixClientLibrary
             return ObixResult.kObixClientSuccess;
         }
 
-        public async Task<ObixResult> SubmitBatch(XmlBatch Batch)
+        public async Task<ObixResult> SubmitBatchTask(XmlBatch Batch)
         {
             return await Task.Factory.StartNew<ObixResult>(() => { return SubmitBatch(ref Batch); });
         }
