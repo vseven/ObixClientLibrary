@@ -87,7 +87,6 @@ namespace ObixClientLibrary
                     WebRequestHandler n4DigestHandler = new WebRequestHandler
                     {
                         Credentials = n4CredCache,
-                        
                         PreAuthenticate = true,
                         AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
                     };
@@ -106,7 +105,6 @@ namespace ObixClientLibrary
                     WebRequestHandler axDigestHandler = new WebRequestHandler
                     {
                         Credentials = axCredCache,
-
                         PreAuthenticate = true,
                         AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
                     };
@@ -147,7 +145,6 @@ namespace ObixClientLibrary
                     WebRequestHandler n4DigestHandler = new WebRequestHandler
                     {
                         Credentials = n4CredCache,
-                        
                         PreAuthenticate = true,
                         AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
                     };
@@ -166,7 +163,6 @@ namespace ObixClientLibrary
                     WebRequestHandler axDigestHandler = new WebRequestHandler
                     {
                         Credentials = axCredCache,
-
                         PreAuthenticate = true,
                         AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested
                     };
@@ -184,7 +180,7 @@ namespace ObixClientLibrary
                     WebClient.Timeout = new TimeSpan(0, 15, 0);
                     ErrorStack = new ObixErrorStack();
                     break;
-               }
+            }
             this.signUpUri = new Uri(Url.Combine(ObixLobbyUri.ToString(), RegisterUri));
         }
 
