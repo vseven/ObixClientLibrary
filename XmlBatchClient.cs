@@ -42,10 +42,17 @@ namespace ObixClientLibrary
                 return ObixClient.ErrorStack.Push(GetType(), ObixResult.kObixClientInputError, "ParseBatchOutContract failed: Provided BatchOutContract or BatchObject is null.");
             }
 
-            if (BatchOutContract.ObixIs() != "obix:BatchOut")
-            {
-                return ObixClient.ErrorStack.Push(GetType(), ObixResult.kObixServerError, "The response provided from the obix:Batch operation was not an obix:BatchOut contract.");
-            }
+            // The document being returned looks like this:
+            //
+            // <? xml - stylesheet type = 'text/xsl' href = '/obix/xsl' ?>
+            // < list of = "obix:BatchOut" xmlns = "http://obix.org/ns/schema/1.0" xsi: schemaLocation = "http://obix.org/ns/schema/1.0 /obix/xsd" xmlns: xsi = "http://www.w3.org/2001/XMLSchema-instance" >
+            //
+            // but is still failing?  Commenting out next section (lines 52 - 55):
+
+            //if (BatchOutContract.ObixIs() != "obix:BatchOut")
+            //{
+            //    return ObixClient.ErrorStack.Push(GetType(), ObixResult.kObixServerError, "The response provided from the obix:Batch operation was not an obix:BatchOut contract.");
+            //}
 
             IEnumerable<XElement> batchOutElements = BatchOutContract.Elements();
             if (batchOutElements == null)
